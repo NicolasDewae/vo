@@ -16,14 +16,14 @@
         <div class = "collapse navbar-collapse" id = "navbarColor03">
             <ul class = "navbar-nav mr-auto">
                 <li class = "nav-item active">
-                    <a class="nav-link" href="main.php">
+                    <a class="nav-link" href="index.php">
                         <p style = "vertical-align: inherit;"> 
                             Accueil
                         </p> 
                     </a>
                 </li>
                 <li class = "nav-item active">
-                    <a class="nav-link" href="livres.php">
+                    <a class="nav-link" href="books.view.php">
                         <p style = "vertical-align: inherit;"> 
                             Livres
                         </p> 
