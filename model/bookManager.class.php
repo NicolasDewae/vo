@@ -24,5 +24,13 @@ require_once "../model/books.class.php";
                 $this->addBook($b);
             }
         }
+
+        public function showBook($id){
+            for ($i=0; $i < count($this->_books); $i++) { 
+                if ($this->_book[$i]->getId() === $id) {
+                    return $this->_books[$i];
+                }
+            }
+        }
     }
 ?>
