@@ -1,27 +1,29 @@
 <?php
+// change url
+// str_replace for replace index.php with nothing ("index.php", "")
+// isset for test if is https or http website
 define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http").
 "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
-require_once "../model/bookManager.class.php";
-$bookManager = new BookManager;
+require_once "controller/book.crtl.php";
+$bookController = new BookController;
 
 try{
     if(empty($_GET['page'])){
-        require "../view/main.view.php";
+        require "view/main.view.php";
     } else {
-        // url formatage
+        // Explode url with /
+        // The FILTER_SANITIZE_URL filter removes all illegal URL characters from a string.
         $url = explode("/", filter_var($_GET['page']), FILTER_SANITIZE_URL);
     
         switch($url[0]){
-            case "accueil" : require "../view/main.view.php";
+            case "accueil" : require "view/main.view.php";
             break;
             case 'livres': 
                 if (empty($url[1])) {
-                    require "../view/books.view.php";
-                    $bookManager->loadingBooks();
+                    $bookController->showBooks();
                 } elseif ($url[1] === "showBook") {
-                    require "../view/showBook.view.php";
-                    echo $bookManager->showBook($url[2]);
+                    echo $bookController->showBook($url[2]);
                 }elseif ($url[1] === "addBook") {
                     echo "Ajouter un livre";
                 }elseif ($url[1] === "modifyBook") {
