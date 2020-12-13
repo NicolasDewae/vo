@@ -1,6 +1,6 @@
 <?php
-require_once "../model/DbConnection.class.php";
-require_once "../model/books.class.php";
+require_once "DbConnection.class.php";
+require_once "books.class.php";
 
     class BookManager extends dbConnection {
         private $_books;
@@ -25,9 +25,9 @@ require_once "../model/books.class.php";
             }
         }
 
-        public function showBook($id){
+        public function getBookById($id){
             for ($i=0; $i < count($this->_books); $i++) { 
-                if ($this->_book[$i]->getId() === $id) {
+                if ($this->_books[$i]->getId() === $id) {
                     return $this->_books[$i];
                 }
             }
