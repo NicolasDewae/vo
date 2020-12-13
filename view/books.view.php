@@ -1,6 +1,6 @@
 <?php
-require_once "../model/books.class.php";
-require_once "../model/bookManager.class.php";
+require_once "model/books.class.php";
+require_once "model/bookManager.class.php";
 
 $bookManager = new BookManager;
 
@@ -36,5 +36,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $title = "Livres de la bibliothèque";
-require "../view/template.php";
+require "template.php";
 ?>
