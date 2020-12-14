@@ -6,7 +6,7 @@ ob_start();
 
 <div class="row">
     <div class="col-6">
-        <img src="<?php echo URL ?>public/images/<?= $book->getImage(); ?>">
+        <img src="<?php echo URL ?>../Projet/Vo/public/images/<?php echo $book->getImage(); ?>">
     </div>
     <div class="col-6">
         <p>Titre : <?php echo $book->getTitle(); ?></p>
