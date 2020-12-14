@@ -3,7 +3,7 @@ require_once "DbConnection.class.php";
 require_once "books.class.php";
 
     class BookManager extends dbConnection {
-        private $_books;
+        private $_books; // Book tab
         
         public function addBook($book){
             $this->_books[] = $book;
