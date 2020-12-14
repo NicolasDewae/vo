@@ -23,8 +23,8 @@ ob_start();
         for ($i=0; $i < count($books); $i++) { 
     ?>
             <tr>
-                <td class="align-middle"><img src="../Projet/Vo/public/images/<?php echo $books[$i]->getImage()?>" width="60px;" alt="Jouer au fantomes"></td>
-                <td class="align-middle"><?php echo $books[$i]->getTitle()?></td>
+                <td class="align-middle"><img src="public/images<?php echo $books[$i]->getImage()?>" width="60px;" alt="Jouer au fantomes"></td>
+                <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
                 <td class="align-middle"><?php echo $books[$i]->getNbPages()?></td>
                 <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
                 <td class="align-middle"><a href="" class="btn btn-danger">Supprimer</a></td>
