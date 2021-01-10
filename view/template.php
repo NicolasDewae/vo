@@ -29,6 +29,13 @@
                         </p> 
                     </a>
                 </li>
+                <li class = "nav-item active">
+                    <a class="nav-link" href="<?php echo URL ?>todo">
+                        <p style = "vertical-align: inherit;"> 
+                            To do
+                        </p> 
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
