@@ -25,9 +25,9 @@ class BookController{
 
     public function addBookValidation(){
         $file = $_FILES['image'];
-        $repertoire = "public/images/";
-        $nomImageAjoute = $this->addImage($file,$repertoire);
-        $this->bookManager->addBookDB($_POST['title'],$_POST['nbPages'],$nomImageAjoute);
+        $register = "public/images/";
+        $NameImageAdded = $this->addImage($file, $register);
+        $this->bookManager->addBookDB($_POST['title'],$_POST['nbPages'],$NameImageAdded);
         // Redirection
         header('Location: '. URL . "livres");
     }
@@ -38,6 +38,25 @@ class BookController{
         unlink("public/images/".$imageName);
         $this->bookManager->deleteBookDB($id);
         // Redirection
+        header('Location: '. URL . "livres");
+    }
+
+    public function updateBook($id){
+        $book = $this->bookManager->getBookById($id);
+        require "view/updateBook.view.php";
+    }
+
+    public function updateBookValidation(){
+        $currentImage = $this->bookManager->getBookById($_POST['id'])->getImage();
+        $file = $_FILES['image'];
+        if ($file['size'] > 0) {
+            unlink("public/images/".$currentImage);
+            $register = "public/images/";
+            $NameImageAdded = $this->addImage($file, $register);
+        } else {
+            $NameImageAdded = $currentImage;
+        }
+        $this->bookManager->updateBookDB($_POST['id'], $_POST['title'], $_POST['nbPages'], $NameImageAdded);
         header('Location: '. URL . "livres");
     }
 

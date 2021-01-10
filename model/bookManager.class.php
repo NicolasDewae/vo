@@ -50,6 +50,25 @@ require_once "books.class.php";
             }        
         }
 
+        public function updateBookDB($id, $title, $nbPages, $image){
+            $req = "UPDATE books 
+                    SET title = :title, nbPages = :nbPages, image = :image
+                    WHERE id = :id";
+            $stmt = $this->getInstance()->prepare($req);
+            $stmt->bindvalue(":id",$id,PDO::PARAM_INT);
+            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
+            $stmt->bindValue(":nbPages",$nbPages,PDO::PARAM_INT);
+            $stmt->bindValue(":image",$image,PDO::PARAM_STR);
+            $resultat = $stmt->execute();
+            $stmt->closeCursor();
+
+            if ($resultat > 0) {
+                $this->getBookById($id)->setTitle($title);
+                $this->getBookById($id)->setNbPages($nbPages);
+                $this->getBookById($id)->setImage($image);
+            }
+        }
+
         public function deleteBookDB($id){
             $req = "DELETE FROM books WHERE id = :idBook";
             $stmt = $this->getInstance()->prepare($req);

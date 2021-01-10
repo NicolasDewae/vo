@@ -23,11 +23,13 @@ try{
                 if (empty($url[1])) {
                     $bookController->showBooks();
                 } elseif ($url[1] === "showBook") {
-                    echo $bookController->showBook($url[2]);
+                    $bookController->showBook($url[2]);
                 }elseif ($url[1] === "addBook") {
-                    echo $bookController->addBook();
-                }elseif ($url[1] === "modifyBook") {
-                    echo "Modifier un livre";
+                    $bookController->addBook();
+                }elseif ($url[1] === "updateBook") {
+                    $bookController->updateBook($url[2]);
+                }elseif ($url[1] === "updateBookValidation") {
+                    $bookController->updateBookValidation();
                 }elseif ($url[1] === "deleteBook") {
                     $bookController->deleteBook($url[2]);
                 }elseif ($url[1] === "addBookValidation") {

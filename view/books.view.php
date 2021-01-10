@@ -26,7 +26,7 @@ ob_start();
             <td class="align-middle"><img src="public/images/<?php echo $books[$i]->getImage()?>" width="60px;" alt="Livre <?php echo $books[$i]->getTitle()?>"></td>
             <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
             <td class="align-middle"><?php echo $books[$i]->getNbPages()?></td>
-            <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
+            <td class="align-middle"><a href="<?php echo URL ?>livres/updateBook/<?php echo $books[$i]->getId()?>" class="btn btn-warning">Modifier</a></td>
             <td class="align-middle">
                 <form method="POST" action="<?php echo URL ?>livres/deleteBook/<?php echo $books[$i]->getId()?>" onSubmit="return confirm('Voulez-vous vraiment supprimer ?');">
                     <button class="btn btn-danger" type="submit">Supprimer</button>
