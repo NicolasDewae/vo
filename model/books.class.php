@@ -9,7 +9,7 @@
             $this->_id = $id;
             $this->_title = $title;
             $this->_nbPages = $nbPages;
-            $this->_images = $image;
+            $this->_image = $image;
         }
 
         public function getId(){
