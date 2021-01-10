@@ -9,7 +9,6 @@ $bookManager->loadingBooks();
 // everything is after "ob_start" will be contained in the variable $content with "ob_get_clean"
 ob_start();
 ?>
-
 <table class="table text-center">
     <tr class="table-dark">
         <th>Image</th>
@@ -22,16 +21,17 @@ ob_start();
         $books = $bookManager->getBooks(); 
         for ($i=0; $i < count($books); $i++) { 
     ?>
-            <tr>
-                <td class="align-middle"><img src="public/images<?php echo $books[$i]->getImage()?>" width="60px;" alt="Jouer au fantomes"></td>
-                <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
-                <td class="align-middle"><?php echo $books[$i]->getNbPages()?></td>
-                <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
-                <td class="align-middle"><a href="" class="btn btn-danger">Supprimer</a></td>
-            </tr>
-        <?php } ?>
+    <!-- <img src="public/images/hunger_games.png" width="60px;" alt=""> -->
+        <tr>
+            <td class="align-middle"><img src="public/images/<?php echo $books[$i]->getImage()?>" width="60px;" alt="Livre <?php echo $books[$i]->getTitle()?>"></td>
+            <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
+            <td class="align-middle"><?php echo $books[$i]->getNbPages()?></td>
+            <td class="align-middle"><a href="" class="btn btn-warning">Modifier</a></td>
+            <td class="align-middle"><a href="" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+    <?php } ?>
 </table>
-<a href="" class="btn btn-success d-block">Ajouter</a>
+<a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajouter</a>
  
 <?php
 $content = ob_get_clean();
