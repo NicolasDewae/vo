@@ -35,16 +35,18 @@ try{
                 }elseif ($url[1] === "addBookValidation") {
                     $bookController->addBookValidation();
                 }else {
-                    throw new Exception("page do not exist");
+                    throw new Exception("La page que vous recherchez n'existe pas");
                     
                 }
                 break;
-                default : throw new Exception("page do not exist");
-                
+                case "todo" : require "view/todo.view.php";
+                break;
+                default : throw new Exception("La page que vous recherchez n'existe pas");    
         }
     }
 }catch(Exception $e){
-    echo $e->getMessage();
+    $msg = $e->getMessage();
+    require "view/error.view.php";
 }
 
 
