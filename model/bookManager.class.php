@@ -16,6 +16,7 @@ require_once "books.class.php";
         public function loadingBooks(){
             $req = $this->getInstance()->prepare("SELECT * FROM books");
             $req->execute();
+            // avoid having duplicates
             $books = $req->fetchAll(PDO::FETCH_ASSOC);
             $req->closeCursor();
 
@@ -31,6 +32,23 @@ require_once "books.class.php";
                     return $this->_books[$i];
                 }
             }
+        }
+
+        public function addBookDB($title,$nbPages,$image){
+            $req = "
+            INSERT INTO books (title, nbPages, image)
+            values (:title, :nbPages, :image)";
+            $stmt = $this->getInstance()->prepare($req);
+            $stmt->bindValue(":title",$title,PDO::PARAM_STR);
+            $stmt->bindValue(":nbPages",$nbPages,PDO::PARAM_INT);
+            $stmt->bindValue(":image",$image,PDO::PARAM_STR);
+            $resultat = $stmt->execute();
+            $stmt->closeCursor();
+    
+            if($resultat > 0){
+                $book = new Book($this->getInstance()->lastInsertId(),$title,$nbPages,$image);
+                $this->addBook($book);
+            }        
         }
     }
 ?>
