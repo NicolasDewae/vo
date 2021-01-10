@@ -25,11 +25,13 @@ try{
                 } elseif ($url[1] === "showBook") {
                     echo $bookController->showBook($url[2]);
                 }elseif ($url[1] === "addBook") {
-                    echo "Ajouter un livre";
+                    echo $bookController->addBook();
                 }elseif ($url[1] === "modifyBook") {
                     echo "Modifier un livre";
                 }elseif ($url[1] === "deleteBook") {
-                    echo "Supprimer un livre";
+                    $bookController->deleteBook($url[2]);
+                }elseif ($url[1] === "addBookValidation") {
+                    $bookController->addBookValidation();
                 }else {
                     throw new Exception("page do not exist");
                     

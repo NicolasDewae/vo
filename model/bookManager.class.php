@@ -35,9 +35,8 @@ require_once "books.class.php";
         }
 
         public function addBookDB($title,$nbPages,$image){
-            $req = "
-            INSERT INTO books (title, nbPages, image)
-            values (:title, :nbPages, :image)";
+            $req = "INSERT INTO books (title, nbPages, image)
+                    values (:title, :nbPages, :image)";
             $stmt = $this->getInstance()->prepare($req);
             $stmt->bindValue(":title",$title,PDO::PARAM_STR);
             $stmt->bindValue(":nbPages",$nbPages,PDO::PARAM_INT);
@@ -49,6 +48,18 @@ require_once "books.class.php";
                 $book = new Book($this->getInstance()->lastInsertId(),$title,$nbPages,$image);
                 $this->addBook($book);
             }        
+        }
+
+        public function deleteBookDB($id){
+            $req = "DELETE FROM books WHERE id = :idBook";
+            $stmt = $this->getInstance()->prepare($req);
+            $stmt->bindValue("idBook", $id, PDO::PARAM_INT);
+            $resultat = $stmt->execute();
+            $stmt->closeCursor();
+            if ($resultat > 0) {
+                $bookToDelete = $this->getBookById($id); 
+                unset($bookToDelete);
+            }
         }
     }
 ?>

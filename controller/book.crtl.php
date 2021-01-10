@@ -28,6 +28,16 @@ class BookController{
         $repertoire = "public/images/";
         $nomImageAjoute = $this->addImage($file,$repertoire);
         $this->bookManager->addBookDB($_POST['title'],$_POST['nbPages'],$nomImageAjoute);
+        // Redirection
+        header('Location: '. URL . "livres");
+    }
+
+    public function deleteBook($id){
+        $imageName = $this->bookManager->getBookById($id)->getimage();
+        // Delete image in the repository
+        unlink("public/images/".$imageName);
+        $this->bookManager->deleteBookDB($id);
+        // Redirection
         header('Location: '. URL . "livres");
     }
 
