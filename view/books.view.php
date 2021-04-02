@@ -1,13 +1,19 @@
 <?php
-require_once "model/books.class.php";
-require_once "model/bookManager.class.php";
+    require_once "model/books.class.php";
+    require_once "model/bookManager.class.php";
 
-$bookManager = new BookManager;
+    $bookManager = new BookManager;
 
-$bookManager->loadingBooks();
+    $bookManager->loadingBooks();
 
-// everything is after "ob_start" will be contained in the variable $content with "ob_get_clean"
-ob_start();
+    // everything is after "ob_start" will be contained in the variable $content with "ob_get_clean"
+    ob_start();
+    // if there are not book add "Ajouter votre premier livre" button
+    if (!$books) {
+?>
+    <a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajoutez votre premier livre</a>
+<?php
+    } else {
 ?>
 <table class="table text-center">
     <tr class="table-dark">
@@ -19,9 +25,8 @@ ob_start();
     <?php
         // get all books and store them in $books
         $books = $bookManager->getBooks(); 
-        for ($i=0; $i < count($books); $i++) { 
+        for ($i=0; $i < count($books); $i++) {   
     ?>
-    <!-- <img src="public/images/hunger_games.png" width="60px;" alt=""> -->
         <tr>
             <td class="align-middle"><img src="public/images/<?php echo $books[$i]->getImage()?>" width="60px;" alt="Livre <?php echo $books[$i]->getTitle()?>"></td>
             <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
@@ -33,9 +38,19 @@ ob_start();
                 </form>
             </td>
         </tr>
+        <!-- end for -->
+        <?php } ?>
+    <!-- end if -->
     <?php } ?>
 </table>
-<a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajouter</a>
+<!-- if there are books, add "Ajouter" button -->
+<?php 
+    if ($books) {
+?>    
+    <a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajouter</a>
+<?php    
+    }
+?>
  
 <?php
 $content = ob_get_clean();
