@@ -19,12 +19,12 @@ ob_start();
         <input type="email" class="form-control" id="email" name="email"></input>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">importer une image</label>
+        <label for="password" class="form-label">Mot de passe</label>
         <input class="form-control-file" type="password" id="password" name="password">
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">importer une image</label>
-        <input class="form-control-file" type="password" id="password_conf" name="password_conf">
+        <label for="password" class="form-label">Comfirmez votre mot de passe</label>
+        <input class="form-control-file" type="password" id="confirmPassword" name="confirmPassword">
     </div>
     <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
