@@ -2,7 +2,7 @@
 require_once "DbConnection.class.php";
 require_once "user.class.php";
 
-    class BookManager extends dbConnection {
+    class UserManager extends dbConnection {
         private $_users; // User tab
 
         public function getUserById($id){
@@ -13,7 +13,7 @@ require_once "user.class.php";
             }
         }
 
-        public function addBookDB($firstname,$lastname,$email, $password){
+        public function addUserDB($firstname,$lastname,$email, $password){
             $req = "INSERT INTO user (firstname, lastname, email, password)
                     values (:firstname, :lastname, :email, :password)";
             $stmt = $this->getInstance()->prepare($req);
