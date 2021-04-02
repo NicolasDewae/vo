@@ -6,7 +6,9 @@ define("URL", str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" :
 "://$_SERVER[HTTP_HOST]$_SERVER[PHP_SELF]"));
 
 require_once "controller/book.crtl.php";
+require_once "controller/user.crtl.php";
 $bookController = new BookController;
+$userController = new UserController;
 
 try{
     if(empty($_GET['page'])){
@@ -34,10 +36,14 @@ try{
                     $bookController->deleteBook($url[2]);
                 }elseif ($url[1] === "addBookValidation") {
                     $bookController->addBookValidation();
+                }elseif ($url[1] === "Inscription") {
+                    $userController->addUser();
                 }else {
                     throw new Exception("La page que vous recherchez n'existe pas");
                     
                 }
+                break;
+                case "inscription": require "view/inscription.view.php";
                 break;
                 case "todo" : require "view/todo.view.php";
                 break;
