@@ -1,5 +1,5 @@
 <?php
-    class Book{
+    class User{
         private $_id;
         private $_firstname;
         private $_lastname;
