@@ -1,7 +1,7 @@
 <?php 
 ob_start();
 ?>
-<form method="POST" action="<?php echo URL ?>inscription" enctype="multipart/form-data">
+<form method="POST" action="<?php echo URL ?>inscription/SignUp" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="firstname" class="form-label">Prénom</label>
         <input type="text" class="form-control" id="firstname" name="firstname">
@@ -9,10 +9,6 @@ ob_start();
     <div class="mb-3">
         <label for="lastname" class="form-label">Nom</label>
         <input type="text" class="form-control" id="lastname" name="lastname">
-    </div>
-    <div class="mb-3">
-        <label for="username" class="form-label">Identifiant</label>
-        <input type="text" class="form-control" id="username" name="username">
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Adresse email</label>
@@ -24,7 +20,7 @@ ob_start();
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Comfirmez votre mot de passe</label>
-        <input class="form-control-file" type="password" id="confirmPassword" name="confirmPassword">
+        <input class="form-control-file" type="password" id="password_confirm" name="password_confirm">
     </div>
     <button type="submit" class="btn btn-primary">S'inscrire</button>
 </form>
