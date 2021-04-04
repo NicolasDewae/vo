@@ -30,6 +30,13 @@
                     </a>
                 </li>
                 <li class = "nav-item active">
+                    <a class="nav-link" href="<?php echo URL ?>inscription">
+                        <p style = "vertical-align: inherit;"> 
+                            Inscription
+                        </p> 
+                    </a>
+                </li>
+                <li class = "nav-item active">
                     <a class="nav-link" href="<?php echo URL ?>todo">
                         <p style = "vertical-align: inherit;"> 
                             To do
