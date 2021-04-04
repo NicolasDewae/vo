@@ -36,14 +36,16 @@ try{
                     $bookController->deleteBook($url[2]);
                 }elseif ($url[1] === "addBookValidation") {
                     $bookController->addBookValidation();
-                }elseif ($url[1] === "Inscription") {
-                    $userController->addUser();
                 }else {
-                    throw new Exception("La page que vous recherchez n'existe pas");
-                    
+                    throw new Exception("La page que vous recherchez n'existe pas");  
                 }
                 break;
-                case "inscription": require "view/inscription.view.php";
+                case "inscription": 
+                    if (empty($url[1])) {
+                        require "view/inscription.view.php";
+                    }elseif ($url[1] === "SignUp") {
+                        $userController->SignUp();
+                    }
                 break;
                 case "todo" : require "view/todo.view.php";
                 break;
