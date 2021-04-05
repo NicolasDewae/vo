@@ -62,14 +62,19 @@ class UserController {
                 $emailConnect = htmlspecialchars($_POST['emailConnect']);
                 $passwordConnect = sha1($_POST['passwordConnect']);
                 if (!empty($emailConnect) && !empty($passwordConnect)) {
-                    $userinfo = $this->userManager->getLogin($emailConnect,$passwordConnect);
-                    if ($userinfo == true) {
+                    $login = $this->userManager->getLogin($emailConnect,$passwordConnect);
+                    if ($login == true) {
+                        // get user info with email
+                        $userinfo = $this->userManager->getUserByEmail($emailConnect);
+                        // put info in session
+                        session_start();
                         $_SESSION['id'] = $userinfo['id'];
-                        $_SESSION['pseudo'] = $userinfo['pseudo'];
+                        $_SESSION['firstname'] = $userinfo['firstname'];
+                        $_SESSION['lastname'] = $userinfo['lastname'];
                         $_SESSION['email'] = $userinfo['email'];
+                        $_SESSION['role'] = $userinfo['role'];
                         // Redirection
-                        // header('Location: '. URL . "accueil");
-                        // header("location: profil.php?id=" . $_SESSION['id']);
+                        header('Location: '. URL . "accueil");
                     } else {
                         $error = "Mauvais identifiant ou mot de passe.";
                         echo "$error";
