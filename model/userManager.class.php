@@ -5,11 +5,20 @@ require_once "user.class.php";
     class UserManager extends dbConnection {
         private $_users; // User tab
 
-        public function getUserById($id){
-            for ($i=0; $i < count($this->_users); $i++) { 
-                if ($this->_users[$i]->getId() === $id) {
-                    return $this->_users[$i];
-                }
+        /**
+         * Get user info from email
+         */
+        public function getUserByEmail($email){
+            try {
+                $req = $this->getInstance()->prepare("SELECT * FROM user WHERE email = '$email'");
+                $req->execute();
+                $user = $req->fetchAll(PDO::FETCH_ASSOC);
+                $req->closeCursor();
+                // if email exist, return user. 
+                // user tab architecture -> array[ key 0 => value array[ userInfo ] ]
+                return $user[0];
+            } catch (\Exception $e) {
+                echo 'Error : '.$e->getMessage();
             }
         }
 
