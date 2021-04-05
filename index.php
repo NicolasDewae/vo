@@ -56,6 +56,8 @@ try{
                 break;
                 case "todo" : require "view/todo.view.php";
                 break;
+                case "deconnexion" : require "view/logOut.view.php";
+                break;
                 default : throw new Exception("La page que vous recherchez n'existe pas");    
         }
     }
