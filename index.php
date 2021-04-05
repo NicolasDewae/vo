@@ -42,9 +42,16 @@ try{
                 break;
                 case "inscription": 
                     if (empty($url[1])) {
-                        require "view/inscription.view.php";
+                        require "view/signUp.view.php";
                     }elseif ($url[1] === "SignUp") {
                         $userController->SignUp();
+                    }
+                break;
+                case "connexion": 
+                    if (empty($url[1])) {
+                        require "view/signIn.view.php";
+                    }elseif ($url[1] === "SignIn") {
+                        $userController->SignIn();
                     }
                 break;
                 case "todo" : require "view/todo.view.php";
