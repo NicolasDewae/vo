@@ -3,9 +3,8 @@ ob_start();
 ?>
 <h2>Mises à jours principales</h2>
 <ol>
-    <li>Page d'inscription</li>
-    <li>Page de connexion</li>
-    <li>Ajouter un user_id en bdd et mettre à jours la requête SQL de la fonction showBooks pour personnaliser les listes de livres selon l'utilisateur</li>
+    <li>Verifier les acces des users (connectés) et des visiteurs (non connectés)</li>
+    <li>modifier les fonctions show, modify et delete book pour y ajouter l'id user</li>
     <li>Implémenter du JS pour dynamiser l'application pour:</li>
     <ul>
         <li>Ajouter des alertes de succès et/ou d'erreurs</li>
