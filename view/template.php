@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,27 +25,37 @@
                         </p> 
                     </a>
                 </li>
-                <li class = "nav-item active">
-                    <a class="nav-link" href="<?php echo URL ?>livres">
-                        <p style = "vertical-align: inherit;"> 
-                            Livres
-                        </p> 
-                    </a>
-                </li>
-                <li class = "nav-item active">
-                    <a class="nav-link" href="<?php echo URL ?>inscription">
-                        <p style = "vertical-align: inherit;"> 
-                            Inscription
-                        </p> 
-                    </a>
-                </li>
-                <li class = "nav-item active">
-                    <a class="nav-link" href="<?php echo URL ?>connexion">
-                        <p style = "vertical-align: inherit;"> 
-                            Connexion
-                        </p> 
-                    </a>
-                </li>
+                <?php if (isset($_SESSION['id'])) { ?>
+                    <li class = "nav-item active">
+                        <a class="nav-link" href="<?php echo URL ?>livres">
+                            <p style = "vertical-align: inherit;"> 
+                                Livres
+                            </p> 
+                        </a>
+                    </li>
+                    <li class = "nav-item active">
+                        <a class="nav-link" href="<?php echo URL ?>deconnexion">
+                            <p style = "vertical-align: inherit;"> 
+                                Deconnexion
+                            </p> 
+                        </a>
+                    </li>
+                <?php } else {?>
+                    <li class = "nav-item active">
+                        <a class="nav-link" href="<?php echo URL ?>inscription">
+                            <p style = "vertical-align: inherit;"> 
+                                Inscription
+                            </p> 
+                        </a>
+                    </li>
+                    <li class = "nav-item active">
+                        <a class="nav-link" href="<?php echo URL ?>connexion">
+                            <p style = "vertical-align: inherit;"> 
+                                Connexion
+                            </p> 
+                        </a>
+                    </li>
+                <?php } ?>
                 <li class = "nav-item active">
                     <a class="nav-link" href="<?php echo URL ?>todo">
                         <p style = "vertical-align: inherit;"> 
