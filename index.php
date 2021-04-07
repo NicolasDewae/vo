@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // change url
 // str_replace for replace index.php with nothing ("index.php", "")
 // isset for test if is https or http website
