@@ -14,15 +14,18 @@ require_once "books.class.php";
         }
 
         public function loadingBooks(){
-            $req = $this->getInstance()->prepare("SELECT * FROM books");
-            $req->execute();
-            // avoid having duplicates
-            $books = $req->fetchAll(PDO::FETCH_ASSOC);
-            $req->closeCursor();
-
-            foreach($books as $book){
+            // if there is not user id, do not execute function
+            if (!empty($_SESSION['id'])) {
+                // find books with user id
+                $userId = $_SESSION['id'];
+                $req = $this->getInstance()->prepare("SELECT * FROM books WHERE userId = '$userId'");
+                $req->execute();
+                $books = $req->fetchAll(PDO::FETCH_ASSOC);
+                $req->closeCursor();
+                foreach($books as $book){
                 $b = new Book($book['id'], $book['title'],$book['nbPages'],$book['image']);
                 $this->addBook($b);
+                }
             }
         }
 
@@ -34,10 +37,11 @@ require_once "books.class.php";
             }
         }
 
-        public function addBookDB($title,$nbPages,$image){
-            $req = "INSERT INTO books (title, nbPages, image)
-                    values (:title, :nbPages, :image)";
+        public function addBookDB($userId,$title,$nbPages,$image){
+            $req = "INSERT INTO books (userId, title, nbPages, image)
+                    values (:userId, :title, :nbPages, :image)";
             $stmt = $this->getInstance()->prepare($req);
+            $stmt->bindValue(":userId",$userId,PDO::PARAM_INT);
             $stmt->bindValue(":title",$title,PDO::PARAM_STR);
             $stmt->bindValue(":nbPages",$nbPages,PDO::PARAM_INT);
             $stmt->bindValue(":image",$image,PDO::PARAM_STR);
