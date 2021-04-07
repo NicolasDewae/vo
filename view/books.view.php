@@ -1,9 +1,12 @@
 <?php
     require_once "model/books.class.php";
     require_once "model/bookManager.class.php";
+    require_once "model/userManager.class.php";
 
+    $userManager = new UserManager;
+    $userManager->user_only();
+    
     $bookManager = new BookManager;
-
     $bookManager->loadingBooks();
 
     // everything is after "ob_start" will be contained in the variable $content with "ob_get_clean"
@@ -40,17 +43,11 @@
         </tr>
         <!-- end for -->
         <?php } ?>
+</table>
+        <!-- if there are books, add "Ajouter" button -->  
+        <a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajouter</a>
     <!-- end if -->
     <?php } ?>
-</table>
-<!-- if there are books, add "Ajouter" button -->
-<?php 
-    if ($books) {
-?>    
-    <a href="<?php echo URL ?>livres/addBook" class="btn btn-success d-block">Ajouter</a>
-<?php    
-    }
-?>
  
 <?php
 $content = ob_get_clean();
