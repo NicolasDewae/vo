@@ -1,5 +1,6 @@
 <?php
 require_once "model/bookManager.class.php";
+require_once "model/userManager.class.php";
 
 class BookController{
     private $bookManager;
@@ -26,8 +27,9 @@ class BookController{
     public function addBookValidation(){
         $file = $_FILES['image'];
         $register = "public/images/";
+        $userId = $_SESSION['id'];
         $NameImageAdded = $this->addImage($file, $register);
-        $this->bookManager->addBookDB($_POST['title'],$_POST['nbPages'],$NameImageAdded);
+        $this->bookManager->addBookDB($userId,$_POST['title'],$_POST['nbPages'],$NameImageAdded);
         // Redirection
         header('Location: '. URL . "livres");
     }
