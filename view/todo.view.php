@@ -4,7 +4,6 @@ ob_start();
 <h2>Mises à jours principales</h2>
 <ol>
     <li>Verifier les acces des users (connectés) et des visiteurs (non connectés)</li>
-    <li>modifier les fonctions show, modify et delete book pour y ajouter l'id user</li>
     <li>Implémenter du JS pour dynamiser l'application pour:</li>
     <ul>
         <li>Ajouter des alertes de succès et/ou d'erreurs</li>
