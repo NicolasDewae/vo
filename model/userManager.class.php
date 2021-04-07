@@ -63,22 +63,43 @@ require_once "user.class.php";
         }
 
         /**
-         * Verify if email and password exist in database
+         * Verify if email and password are ok
          */
         public function getlogin($emailConnect, $passwordConnect){
             try {
-                $req = $this->getInstance()->prepare("SELECT * FROM user WHERE email = '$emailConnect' AND password = '$passwordConnect'");
+                $req = $this->getInstance()->prepare("SELECT * FROM user WHERE email = '$emailConnect'");
                 $req->execute();
-                $login = $req->fetchAll(PDO::FETCH_ASSOC);
+                $revoverdEmail = $req->fetchAll(PDO::FETCH_ASSOC);
                 $req->closeCursor();
-                // if email ans password exist, return true
-                if ($login == true) {
-                    return true;
-                }else {
+                // if there is an email in $revoverdEmail, we check the password with password_verify function
+                if (!empty($revoverdEmail)) {
+                    if (password_verify($passwordConnect, $revoverdEmail[0]['password'])) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
                     return false;
                 }
             } catch (\Exception $e) {
                 echo 'Error : '.$e->getMessage();
+            }
+        }
+
+        /**
+        * Create restriction access
+        */
+        public function user_only(){
+            try {
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                if (!isset($_SESSION['id'])) {
+                    header('Location: '. URL . "accueil");
+                    exit();
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
     }

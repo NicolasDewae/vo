@@ -16,20 +16,21 @@ class UserController {
                     $firstname = htmlspecialchars($_POST['firstname']);
                     $lastname = htmlspecialchars($_POST['lastname']);
                     $email = htmlspecialchars($_POST['email']);
-                    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-                    $passwordConfirm = password_hash($_POST['password_confirm'], PASSWORD_BCRYPT);
+                    $password = $_POST['password'];
+                    $passwordConfirm = $_POST['password_confirm'];
                     $Role = "User";
                     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        // Check if email exist in database
                         $userEmail = $this->userManager->getEmailUser($email);
+                        // If email do not exist (false), we continue
                         if ($userEmail == false ) {
                             if ($password == $passwordConfirm) {
-                                if ($validation == true) {
-                                    $this->userManager->addUserDB($firstname, $lastname, $email, $password, $Role);
-                                    // Redirection
-                                    header('Location: '. URL . "accueil");
-                                }
-                                $success = "Votre compte à bien été créé.";
-                                echo "$success";
+                                $validation = true;
+                                $password_hash = password_hash($password, PASSWORD_BCRYPT);
+                                // Use addUserDB for create user in database
+                                $this->userManager->addUserDB($firstname, $lastname, $email, $password_hash, $Role);
+                                // Redirection
+                                header('Location: '. URL . "connexion");
                             }else {
                                 $validation = false;
                                 $error = 'Les mots de passe ne sont pas identiques.';
@@ -60,7 +61,7 @@ class UserController {
         try {
             if (isset($_POST)) {
                 $emailConnect = htmlspecialchars($_POST['emailConnect']);
-                $passwordConnect = sha1($_POST['passwordConnect']);
+                $passwordConnect = $_POST['passwordConnect'];
                 if (!empty($emailConnect) && !empty($passwordConnect)) {
                     $login = $this->userManager->getLogin($emailConnect,$passwordConnect);
                     if ($login == true) {
@@ -74,7 +75,7 @@ class UserController {
                         $_SESSION['email'] = $userinfo['email'];
                         $_SESSION['role'] = $userinfo['role'];
                         // Redirection
-                        header('Location: '. URL . "accueil");
+                        header('Location: '. URL . "livres");
                     } else {
                         $error = "Mauvais identifiant ou mot de passe.";
                         echo "$error";
@@ -89,5 +90,4 @@ class UserController {
         }
              
     }
-    
 }
