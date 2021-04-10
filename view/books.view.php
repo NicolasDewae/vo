@@ -30,6 +30,9 @@
         $books = $bookManager->getBooks(); 
         for ($i=0; $i < count($books); $i++) {   
     ?>
+    <div class="alert alert-success" id="successAdmin" role="alert" style="display: none;">
+	    <p>Opération réalisée avec succès</p>
+    </div>
         <tr>
             <td class="align-middle"><img src="public/images/<?php echo $books[$i]->getImage()?>" width="60px;" alt="Livre <?php echo $books[$i]->getTitle()?>"></td>
             <td class="align-middle"><a href="<?php echo URL ?>livres/showBook/<?php echo $books[$i]->getId()?>"><?php echo $books[$i]->getTitle()?></a></td>
