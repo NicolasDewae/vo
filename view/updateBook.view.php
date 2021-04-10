@@ -3,7 +3,7 @@
 ob_start();
 ?>
 
-<form method="POST" action="<?php echo URL ?>livres/updateBookValidation" enctype="multipart/form-data">
+<form id="updateBook" method="POST" action="<?php echo URL ?>livres/updateBookValidation" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="title" class="form-label">Titre</label>
         <input type="text" class="form-control" id="title" name="title" value="<?php echo $book->getTitle() ?>">
