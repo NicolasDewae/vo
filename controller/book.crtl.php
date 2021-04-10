@@ -1,6 +1,7 @@
 <?php
 require_once "model/bookManager.class.php";
 require_once "model/userManager.class.php";
+require_once "js.crtl.php";
 
 class BookController{
     private $bookManager;
@@ -51,6 +52,8 @@ class BookController{
     public function updateBookValidation(){
         $currentImage = $this->bookManager->getBookById($_POST['id'])->getImage();
         $file = $_FILES['image'];
+        $js = new JsController;
+
         if ($file['size'] > 0) {
             unlink("public/images/".$currentImage);
             $register = "public/images/";
@@ -59,7 +62,9 @@ class BookController{
             $NameImageAdded = $currentImage;
         }
         $this->bookManager->updateBookDB($_POST['id'], $_POST['title'], $_POST['nbPages'], $NameImageAdded);
-        header('Location: '. URL . "livres");
+        $js->successAlert();
+        $js->redirection("livres");
+        // header('Location: '. URL . "livres");
     }
 
     private function addImage($file, $dir){

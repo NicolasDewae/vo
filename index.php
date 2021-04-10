@@ -28,15 +28,15 @@ try{
                     $bookController->showBooks();
                 } elseif ($url[1] === "showBook") {
                     $bookController->showBook($url[2]);
-                }elseif ($url[1] === "addBook") {
+                } elseif ($url[1] === "addBook") {
                     $bookController->addBook();
-                }elseif ($url[1] === "updateBook") {
+                } elseif ($url[1] === "updateBook") {
                     $bookController->updateBook($url[2]);
-                }elseif ($url[1] === "updateBookValidation") {
+                } elseif ($url[1] === "updateBookValidation") {
                     $bookController->updateBookValidation();
-                }elseif ($url[1] === "deleteBook") {
+                } elseif ($url[1] === "deleteBook") {
                     $bookController->deleteBook($url[2]);
-                }elseif ($url[1] === "addBookValidation") {
+                } elseif ($url[1] === "addBookValidation") {
                     $bookController->addBookValidation();
                 }else {
                     throw new Exception("La page que vous recherchez n'existe pas");  
@@ -45,14 +45,14 @@ try{
                 case "inscription": 
                     if (empty($url[1])) {
                         require "view/signUp.view.php";
-                    }elseif ($url[1] === "SignUp") {
+                    } elseif ($url[1] === "SignUp") {
                         $userController->SignUp();
                     }
                 break;
                 case "connexion": 
                     if (empty($url[1])) {
                         require "view/signIn.view.php";
-                    }elseif ($url[1] === "SignIn") {
+                    } elseif ($url[1] === "SignIn") {
                         $userController->SignIn();
                     }
                 break;
