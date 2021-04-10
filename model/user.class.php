@@ -5,14 +5,16 @@
         private $_lastname;
         private $_email;
         private $_password;
+        private $_role;
         private $_inscriptionDate;
 
-        public function __construct($id, $firstname, $lastname, $email, $password, $inscriptionDate){
+        public function __construct($id, $firstname, $lastname, $email, $password, $role, $inscriptionDate){
             $this->_id = $id;
             $this->_firstname = $firstname;
             $this->_lastname = $lastname;
             $this->_email = $email;
             $this->_password = $password;
+            $this->_role = $role;
             $this->_inscriptionDate = $inscriptionDate;
         }
 
@@ -55,8 +57,15 @@
         public function setPassword(){
             return $this->_password;
         }
-
         
+        public function getRole(){
+            return $this->_role;
+        }
+
+        public function setRole(){
+            return $this->_role;
+        }
+
         public function getInscriptionDate(){
             return $this->_inscriptionDate;
         }

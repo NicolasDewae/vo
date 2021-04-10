@@ -27,8 +27,8 @@ require_once "user.class.php";
          */
         public function addUserDB($firstname,$lastname,$email,$password,$role){
             try {
-                $req = "INSERT INTO user (firstname, lastname, email, password, role)
-                values (:firstname, :lastname, :email, :password, :role)";
+                $req = "INSERT INTO user (firstname, lastname, email, password, role, inscriptionDate)
+                values (:firstname, :lastname, :email, :password, :role, NOW())";
                 $stmt = $this->getInstance()->prepare($req);
                 $stmt->bindValue(":firstname",$firstname,PDO::PARAM_STR);
                 $stmt->bindValue(":lastname",$lastname,PDO::PARAM_STR);
