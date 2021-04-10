@@ -22,7 +22,7 @@ ob_start();
         <label for="password" class="form-label">Comfirmez votre mot de passe</label>
         <input class="form-control-file" type="password" id="password_confirm" name="password_confirm">
     </div>
-    <button type="submit" class="btn btn-primary">S'inscrire</button>
+    <button type="submit" class="btn btn-primary" id="signup">S'inscrire</button>
 </form>
 <?php
 $content = ob_get_clean();

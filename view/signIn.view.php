@@ -1,7 +1,7 @@
 <?php 
 ob_start();
 ?>
-<form method="POST" action="<?php echo URL ?>connexion/SignIn" enctype="multipart/form-data">
+<form id="loginForm" method="POST" action="<?php echo URL ?>connexion/SignIn" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="email" class="form-label">Adresse email</label>
         <input type="email" class="form-control" id="email" name="emailConnect"></input>
